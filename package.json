@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "wrangler pages deploy dist --project-name=TODO_CF_PROJECT_NAME"
+    "deploy": "wrangler pages deploy dist --project-name=elottedacel-website"
   },
   "packageManager": "bun",
   "dependencies": {
