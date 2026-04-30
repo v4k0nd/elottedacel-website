@@ -12,11 +12,13 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const huUrl = `/hirek/${post.id}`;
 ---
 
 <Layout
   title={`${post.data.title} — Előtted a Cél Egyesület`}
   description={post.data.excerpt}
+  localeToggle={{ huUrl, roUrl: '/ro/' }}
 >
   <article class="max-w-2xl mx-auto px-4 py-16">
     <p class="text-xs text-ink-soft mb-2 uppercase tracking-wide">
