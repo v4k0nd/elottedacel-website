@@ -1,0 +1,20 @@
+# build output
+dist/
+.output/
+
+# Astro generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Wrangler
+.wrangler/

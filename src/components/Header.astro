@@ -1,0 +1,78 @@
+---
+import LocaleToggle from './LocaleToggle.astro';
+
+interface Props {
+  lang?: 'hu' | 'ro';
+  localeToggle?: { huUrl: string; roUrl: string };
+}
+
+const { lang = 'hu', localeToggle } = Astro.props;
+
+const huNav = [
+  { href: '/', label: 'Kezdőlap' },
+  { href: '/rolunk', label: 'Rólunk' },
+  { href: '/tevekenysegeink', label: 'Tevékenységeink' },
+  { href: '/futocsapat', label: 'Futócsapat' },
+  { href: '/hirek', label: 'Hírek' },
+  { href: '/tamogatas', label: 'Támogass' },
+];
+
+const roNav = [
+  { href: '/ro/rolunk', label: 'Despre noi' },
+  { href: '/ro/tevekenysegeink', label: 'Activități' },
+  { href: '/ro/tamogatas', label: 'Susține-ne' },
+];
+
+const navItems = lang === 'ro' ? roNav : huNav;
+const homeHref = lang === 'ro' ? '/ro/rolunk' : '/';
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-line bg-cream sticky top-0 z-40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo placeholder -->
+      <!-- TODO: replace text with actual SVG logo once provided -->
+      <a
+        href={homeHref}
+        class="font-display text-lg font-bold text-ink hover:text-orange-500 transition-colors"
+      >
+        Előtted a Cél
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav aria-label={lang === 'ro' ? 'Navigare principală' : 'Főmenü'}>
+        <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+          {navItems.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                class:list={[
+                  'transition-colors',
+                  currentPath === href
+                    ? 'text-orange-500'
+                    : 'text-ink-soft hover:text-orange-500',
+                ]}
+                aria-current={currentPath === href ? 'page' : undefined}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Locale toggle (right side, only when page has RO translation) -->
+      <div class="flex items-center gap-3">
+        {localeToggle && (
+          <LocaleToggle
+            huUrl={localeToggle.huUrl}
+            roUrl={localeToggle.roUrl}
+            currentLang={lang}
+          />
+        )}
+        <!-- TODO: mobile hamburger menu -->
+      </div>
+    </div>
+  </div>
+</header>

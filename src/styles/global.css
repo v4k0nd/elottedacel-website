@@ -1,0 +1,42 @@
+/* @fontsource-variable packages are imported here so they bundle via Vite.
+   latin-ext subset required for Hungarian double-acute accents: ő ű
+   Verify rendering of: ő ű á é í ó ú Ő Ű Á É Í Ó Ú */
+/* index.css bundles both latin and latin-ext woff2 files, so ő/ű are covered */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/fraunces/index.css";
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors from design tokens */
+  --color-orange-500: #E8590C;
+  --color-orange-600: #D14A06;
+  --color-ink: #1A1A1A;
+  --color-ink-soft: #4A4A4A;
+  --color-cream: #FAFAF7;
+  --color-line: #E8E4DC;
+
+  /* Typography */
+  --font-body: "Inter Variable", system-ui, sans-serif;
+  --font-display: "Fraunces Variable", Georgia, serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1A1A1A;
+    background-color: #FAFAF7;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+  }
+
+  /* Visible focus ring for all interactive elements */
+  :focus-visible {
+    outline: 2px solid #E8590C;
+    outline-offset: 2px;
+  }
+}

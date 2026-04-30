@@ -1,0 +1,40 @@
+---
+interface Props {
+  huUrl: string;
+  roUrl: string;
+  currentLang: 'hu' | 'ro';
+}
+
+const { huUrl, roUrl, currentLang } = Astro.props;
+---
+
+<div class="flex items-center gap-1 text-xs font-medium" aria-label="Nyelv / Limbă">
+  <a
+    href={huUrl}
+    lang="hu"
+    hreflang="hu"
+    class:list={[
+      'px-2 py-1 rounded transition-colors',
+      currentLang === 'hu'
+        ? 'bg-orange-500 text-white'
+        : 'text-ink-soft hover:text-orange-500',
+    ]}
+    aria-current={currentLang === 'hu' ? 'true' : undefined}
+  >
+    HU
+  </a>
+  <a
+    href={roUrl}
+    lang="ro"
+    hreflang="ro"
+    class:list={[
+      'px-2 py-1 rounded transition-colors',
+      currentLang === 'ro'
+        ? 'bg-orange-500 text-white'
+        : 'text-ink-soft hover:text-orange-500',
+    ]}
+    aria-current={currentLang === 'ro' ? 'true' : undefined}
+  >
+    RO
+  </a>
+</div>

@@ -1,0 +1,65 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'hu' | 'ro';
+  /** Pass both URLs to show the locale toggle (only on pages with RO translations) */
+  localeToggle?: { huUrl: string; roUrl: string };
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'hu',
+  localeToggle,
+  ogImage = '/img/og-default.jpg',
+} = Astro.props;
+
+const siteUrl = 'https://elottedacel.ro';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const ogImageAbsolute = new URL(ogImage, siteUrl);
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'ro_RO'} />
+
+    <!-- TODO: replace with real favicon SVG once logo is ready -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Skip-to-content for keyboard and screen reader users -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-orange-500 text-white px-4 py-2 rounded z-50"
+    >
+      {lang === 'ro' ? 'Salt la conținut' : 'Ugrás a tartalomhoz'}
+    </a>
+
+    <Header lang={lang} localeToggle={localeToggle} />
+
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>

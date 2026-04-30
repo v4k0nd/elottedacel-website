@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elottedacel.ro/sitemap-index.xml

@@ -1,0 +1,70 @@
+---
+interface Props {
+  lang?: 'hu' | 'ro';
+}
+
+const { lang = 'hu' } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line bg-cream mt-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+
+      <!-- Contact -->
+      <div>
+        <h2 class="font-display font-semibold text-ink uppercase tracking-wide text-xs mb-4">
+          {lang === 'ro' ? 'Contact' : 'Kapcsolat'}
+        </h2>
+        <ul class="space-y-2 text-ink-soft">
+          <!-- TODO: confirm full street address -->
+          <li>Nyárádszereda, Románia</li>
+          <!-- TODO: confirm official contact email -->
+          <li>
+            <a href="mailto:info@elottedacel.ro" class="hover:text-orange-500 transition-colors">
+              info@elottedacel.ro
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div>
+        <h2 class="font-display font-semibold text-ink uppercase tracking-wide text-xs mb-4">
+          {lang === 'ro' ? 'Urmărește-ne' : 'Kövess minket'}
+        </h2>
+        <ul class="space-y-2 text-ink-soft">
+          <!-- TODO: confirm exact Facebook page URL -->
+          <li>
+            <a
+              href="https://facebook.com/elottedacel"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-orange-500 transition-colors"
+            >
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h2 class="font-display font-semibold text-ink uppercase tracking-wide text-xs mb-4">
+          {lang === 'ro' ? 'Informații legale' : 'Jogi adatok'}
+        </h2>
+        <ul class="space-y-2 text-ink-soft">
+          <!-- TODO: fill in real CIF -->
+          <li>CIF: TODO</li>
+          <!-- TODO: fill in real IBAN -->
+          <li>IBAN: TODO</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="border-t border-line mt-8 pt-8 text-center text-xs text-ink-soft">
+      <p>&copy; {year} Előtted a Cél Egyesület.</p>
+    </div>
+  </div>
+</footer>

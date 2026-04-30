@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Layout
+  title="Hírek — Előtted a Cél Egyesület"
+  description="Az Előtted a Cél Egyesület legfrissebb hírei: rendezvények, eredmények, közösségi programok."
+>
+  <div class="max-w-2xl mx-auto px-4 py-16">
+    <h1 class="font-display text-4xl text-ink mb-8">Hírek</h1>
+
+    {posts.length === 0 ? (
+      <p class="text-ink-soft">Hamarosan — hírek betöltése folyamatban.</p>
+    ) : (
+      <ul class="space-y-6">
+        {posts.map((post) => (
+          <li class="border-b border-line pb-6">
+            <a href={`/hirek/${post.id}`} class="group">
+              <time
+                datetime={post.data.date.toISOString()}
+                class="text-xs text-ink-soft"
+              >
+                {post.data.date.toLocaleDateString('hu-HU', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              <h2 class="font-display text-xl text-ink mt-1 group-hover:text-orange-500 transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-ink-soft text-sm mt-1">{post.data.excerpt}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</Layout>
