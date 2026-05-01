@@ -4,14 +4,77 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   title="Despre noi — Asociația Előtted a Cél"
-  description="Cunoaște Asociația Előtted a Cél: povestea noastră, conducerea, informații juridice."
+  description="Cunoaște Asociația Előtted a Cél: povestea noastră, misiunea noastră, informații juridice."
   lang="ro"
   localeToggle={{ huUrl: '/rolunk', roUrl: '/ro/rolunk' }}
 >
-  <div class="max-w-2xl mx-auto px-4 py-16" lang="ro">
-    <h1 class="font-display text-4xl text-ink mb-4">Despre noi</h1>
-    <p class="text-ink-soft">
-      Lorem ipsum — Conținut în curând: povestea organizației, conducere, date juridice (CIF, IBAN), statut PDF.
+  <!-- Hero image -->
+  <div class="w-full">
+    <img
+      src="/img/hero-rolunk.jpg"
+      alt="Comunitatea Asociației Elotted a cél"
+      loading="eager"
+      class="w-full max-h-[480px] object-cover"
+    />
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 py-12" lang="ro">
+
+    <h1 class="font-display text-4xl sm:text-5xl text-ink mb-6">Despre noi</h1>
+
+    <!-- Lead -->
+    <p class="text-lg text-ink leading-relaxed mb-12">
+      Asociația Elotted a Cél este o comunitate unde mișcarea, muzica, cunoașterea și ajutorul merg mână în mână. Sprijinim activ comunitatea pe mai multe planuri — fizic, sufletesc și spiritual.
     </p>
+
+    <!-- Misiunea noastră -->
+    <section class="mt-12">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink mb-4">
+        Misiunea noastră
+      </h2>
+      <p class="text-ink-soft leading-relaxed">
+        Întărim corpul, ridicăm sufletul, construim comunitate. Credem că baza unei comunități sănătoase este omul în întregimea lui: bunăstarea fizică, sufletească și spirituală. De aceea ne străduim ca programele noastre să aducă valoare reală pe toate cele trei planuri.
+      </p>
+    </section>
+
+    <!-- Istoria noastră -->
+    <section class="mt-16">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink mb-4">
+        Istoria noastră
+      </h2>
+      <p class="text-ink-soft leading-relaxed">
+        Asociația noastră a fost înființată pe 2 aprilie 2025 la Miercurea Nirajului. Deși suntem o organizație tânără, membrii noștri lucrează împreună de mult timp în interesul comunității locale — la curse de alergare, evenimente culturale și acțiuni de ajutor.
+      </p>
+    </section>
+
+    <!-- Date juridice -->
+    <section class="mt-16">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink mb-6">
+        Date juridice
+      </h2>
+      <dl class="space-y-3 text-sm">
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">Nume</dt>
+          <dd class="text-ink-soft">Asociația Elotted a Cél</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">Sediu</dt>
+          <dd class="text-ink-soft">Str. Bisericii nr. 17, Miercurea Nirajului, jud. Mureș</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">CIF</dt>
+          <dd class="text-ink-soft">51562070</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">IBAN</dt>
+          <dd class="text-ink-soft italic">în curând</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">Statut</dt>
+          <dd class="text-ink-soft italic">în curând disponibil pentru descărcare</dd>
+        </div>
+      </dl>
+    </section>
+
   </div>
 </Layout>

@@ -4,13 +4,76 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Rólunk — Előtted a Cél Egyesület"
-  description="Ismerd meg az Előtted a Cél Egyesületet: történetünk, vezetőségünk, jogi információk és az alapszabályzat."
+  description="Ismerd meg az Előtted a Cél Egyesületet: történetünk, küldetésünk, jogi információk."
   localeToggle={{ huUrl: '/rolunk', roUrl: '/ro/rolunk' }}
 >
-  <div class="max-w-2xl mx-auto px-4 py-16">
-    <h1 class="font-display text-4xl text-ink mb-4">Rólunk</h1>
-    <p class="text-ink-soft">
-      Lorem ipsum — Tartalom hamarosan: szervezetünk története, vezetőség, Fil 3:13–14, jogi adatok (CIF: 51562070, IBAN: TODO), alapszabályzat PDF.
+  <!-- Hero image -->
+  <div class="w-full">
+    <img
+      src="/img/hero-rolunk.jpg"
+      alt="Előtted a Cél Egyesület közössége"
+      loading="eager"
+      class="w-full max-h-[480px] object-cover"
+    />
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 py-12">
+
+    <h1 class="font-display text-4xl sm:text-5xl text-ink mb-6">Rólunk</h1>
+
+    <!-- Lead -->
+    <p class="text-lg text-ink leading-relaxed mb-12">
+      Az Előtted a Cél Egyesület egy olyan közösség, ahol a mozgás, a zene, a tudás és a segítségnyújtás kéz a kézben jár. Több területen is aktívan támogatjuk a közösséget — testi, lelki és szellemi szinten egyaránt.
     </p>
+
+    <!-- Küldetésünk -->
+    <section class="mt-12">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink mb-4">
+        Küldetésünk
+      </h2>
+      <p class="text-ink-soft leading-relaxed">
+        Testet erősítünk, lelket emelünk, közösséget építünk. Hisszük, hogy egy egészséges közösség alapja az ember teljessége: a fizikai, a lelki és a szellemi jólét. Ezért dolgozunk azon, hogy programjaink mindhárom területen valódi értéket adjanak.
+      </p>
+    </section>
+
+    <!-- Történetünk -->
+    <section class="mt-16">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink mb-4">
+        Történetünk
+      </h2>
+      <p class="text-ink-soft leading-relaxed">
+        Egyesületünket 2025. április 2-án alapítottuk Nyárádszeredában. Bár fiatal szervezet vagyunk, tagjaink régóta dolgoznak együtt a helyi közösség érdekében — futóversenyeken, kulturális eseményeken és segélyakciókban.
+      </p>
+    </section>
+
+    <!-- Jogi adatok -->
+    <section class="mt-16">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink mb-6">
+        Jogi adatok
+      </h2>
+      <dl class="space-y-3 text-sm">
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">Név</dt>
+          <dd class="text-ink-soft">Előtted a Cél Egyesület</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">Székhely</dt>
+          <dd class="text-ink-soft">Str. Bisericii nr. 17, Miercurea Nirajului, jud. Mureș</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">CIF</dt>
+          <dd class="text-ink-soft">51562070</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">IBAN</dt>
+          <dd class="text-ink-soft italic">hamarosan</dd>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:gap-4">
+          <dt class="font-medium text-ink w-36 shrink-0">Alapszabályzat</dt>
+          <dd class="text-ink-soft italic">hamarosan letölthető</dd>
+        </div>
+      </dl>
+    </section>
+
   </div>
 </Layout>

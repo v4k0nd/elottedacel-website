@@ -1,30 +1,73 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
   title="Támogass minket — Előtted a Cél Egyesület"
   description="Támogasd az Előtted a Cél Egyesületet a 3,5%-os adófelajánlással, banki átutalással vagy önkéntes munkával."
-  localeToggle={{ huUrl: '/tamogatas', roUrl: '/ro/tamogatas' }}
+  localeToggle={{ huUrl: "/tamogatas", roUrl: "/ro/tamogatas" }}
 >
   <div class="max-w-2xl mx-auto px-4 py-16">
     <h1 class="font-display text-4xl text-ink mb-4">Támogass minket</h1>
-    <p class="text-ink-soft">
-      Lorem ipsum — Tartalom hamarosan: 3,5% folyamat (Letöltöd → Kitöltöd → Beadod), IBAN átutalás, önkéntesség, kapcsolatfelvételi form.
+
+    <p class="text-lg mt-6">
+      Egyesületünk munkáját többféleképpen is támogathatod — adód 3,5%-ának
+      felajánlásával, banki átutalással, vagy önkéntes munkával. Minden
+      hozzájárulás közvetlenül a közösségünk programjait erősíti.
     </p>
-    <div id="harom-ot" class="mt-12">
-      <h2 class="font-display text-2xl text-ink mb-2">3,5% adófelajánlás</h2>
-      <p class="text-ink-soft">
-        Hamarosan — Letöltöd → Kitöltöd → Beadod.
+
+    <section id="harom-ot" class="mt-16">
+      <h2 class="font-display text-3xl">3,5% adófelajánlás</h2>
+      <p class="mt-4">
+        Romániai magánszemélyként éves jövedelemadód 3,5%-át átirányíthatod
+        egyesületünknek — neked egy fillérbe sem kerül, nekünk viszont sokat
+        jelent.
       </p>
-      <a
-        href="https://formular230.ro/elotted-a-cel"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block mt-4 bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition-colors font-medium"
-      >
-        Tölts ki a Formular 230-at
-      </a>
-    </div>
+      <p class="mt-4">
+        A folyamat egyszerű: a formular230.ro oldalon online kitöltöd a 230-as
+        nyomtatványt, aláírod, és elküldöd. A többit mi intézzük — az ANAF-hoz
+        mi adjuk be a formot.
+      </p>
+      <a href="https://formular230.ro/elotted-a-cel" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600 transition-colors font-medium">
+Tölts ki a Formular 230-at
+</a>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="font-display text-3xl">Banki átutalás</h2>
+      <p class="mt-4">
+        Ha közvetlenül szeretnél hozzájárulni, banki átutalással is támogathatsz
+        minket bármekkora összeggel.
+      </p>
+      <dl class="mt-6 space-y-2">
+        <div class="flex gap-2">
+          <dt class="font-semibold">IBAN:</dt>
+          <dd class="text-stone-600">hamarosan</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="font-semibold">Kedvezményezett:</dt>
+          <dd>Asociația Előtted a Cél</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="font-semibold">CIF:</dt>
+          <dd>51562070</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="font-display text-3xl">Önkéntesség</h2>
+      <p class="mt-4">
+        Időddel és tudásoddal is segíthetsz. Akár egy esemény megszervezésében,
+        akár futóedzések vezetésében, akár ötletek megosztásában — minden
+        segítő kéznek örülünk.
+      </p>
+      <p class="mt-4">
+        Írj nekünk:
+        <a href="mailto:info@elottedacel.ro" class="text-brand underline">
+          info@elottedacel.ro
+        </a>
+      </p>
+    </section>
   </div>
 </Layout>
