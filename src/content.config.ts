@@ -6,11 +6,12 @@ const news = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.date(),
-    pillar: z.enum(['segitseg', 'zene', 'sport', 'kultura']),
+    pillar: z.enum(['segitseg', 'zene', 'sport', 'kultura', 'kozosseg']),
     eventSeries: z.string().optional(),
     photos: z.array(z.string()).default([]),
     photoCredit: z.string().optional(),
-    excerpt: z.string(),
+    heroImage: z.string().optional(),
+    excerpt: z.string().optional(),
   }),
 });
 

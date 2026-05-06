@@ -5,6 +5,22 @@ import Layout from '../../layouts/Layout.astro';
 const posts = (await getCollection('news')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+
+const pillarColors: Record<string, string> = {
+  sport: '#F97316',
+  zene: '#A855F7',
+  kultura: '#EF4444',
+  segitseg: '#1E3A8A',
+  kozosseg: '#65A30D',
+};
+
+const pillarLabels: Record<string, string> = {
+  sport: 'Sport',
+  zene: 'Zene',
+  kultura: 'Kultúra',
+  segitseg: 'Segítségnyújtás',
+  kozosseg: 'Közösségépítés',
+};
 ---
 
 <Layout
@@ -12,34 +28,67 @@ const posts = (await getCollection('news')).sort(
   description="Az Előtted a Cél Egyesület legfrissebb hírei: rendezvények, eredmények, közösségi programok."
   localeToggle={{ huUrl: '/hirek', roUrl: '/ro/' }}
 >
-  <div class="max-w-2xl mx-auto px-4 py-16">
-    <h1 class="font-display text-4xl text-ink mb-8">Hírek</h1>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <h1 class="font-display text-4xl text-ink mb-10">Hírek</h1>
 
     {posts.length === 0 ? (
-      <p class="text-ink-soft">Hamarosan — hírek betöltése folyamatban.</p>
+      <p class="text-ink-soft">Hamarosan hírek is érkeznek — kövess minket Facebookon!</p>
     ) : (
-      <ul class="space-y-6">
-        {posts.map((post) => (
-          <li class="border-b border-line pb-6">
-            <a href={`/hirek/${post.id}`} class="group">
-              <time
-                datetime={post.data.date.toISOString()}
-                class="text-xs text-ink-soft"
-              >
-                {post.data.date.toLocaleDateString('hu-HU', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-              <h2 class="font-display text-xl text-ink mt-1 group-hover:text-orange-500 transition-colors">
-                {post.data.title}
-              </h2>
-              <p class="text-ink-soft text-sm mt-1">{post.data.excerpt}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => {
+          const coverPhoto = post.data.heroImage ?? post.data.photos[0];
+          const accentColor = pillarColors[post.data.pillar] ?? '#E8E4DC';
+          const pillarLabel = pillarLabels[post.data.pillar] ?? post.data.pillar;
+          const formattedDate = post.data.date.toLocaleDateString('hu-HU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          });
+          return (
+            <a
+              href={`/hirek/${post.id}`}
+              class="group flex flex-col border border-line rounded-lg overflow-hidden hover:-translate-y-1 transition-transform duration-200 hover:border-orange-500"
+            >
+              {coverPhoto ? (
+                <img
+                  src={coverPhoto}
+                  alt={post.data.title}
+                  loading="lazy"
+                  class="w-full h-48 object-cover"
+                />
+              ) : (
+                <div
+                  class="w-full h-48"
+                  style={`background-color: ${accentColor};`}
+                  aria-hidden="true"
+                />
+              )}
+              <div class="p-5 flex flex-col flex-grow">
+                <div class="flex items-center gap-2 mb-2">
+                  <span
+                    class="text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full text-white"
+                    style={`background-color: ${accentColor};`}
+                  >
+                    {pillarLabel}
+                  </span>
+                  <time
+                    datetime={post.data.date.toISOString()}
+                    class="text-xs text-ink-soft"
+                  >
+                    {formattedDate}
+                  </time>
+                </div>
+                <h2 class="font-display text-xl text-ink mb-2 group-hover:text-orange-500 transition-colors leading-snug">
+                  {post.data.title}
+                </h2>
+                {post.data.excerpt && (
+                  <p class="text-ink-soft text-sm leading-relaxed">{post.data.excerpt}</p>
+                )}
+              </div>
             </a>
-          </li>
-        ))}
-      </ul>
+          );
+        })}
+      </div>
     )}
   </div>
 </Layout>

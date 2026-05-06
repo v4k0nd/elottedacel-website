@@ -13,32 +13,120 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const huUrl = `/hirek/${post.id}`;
+
+const pillarLabels: Record<string, string> = {
+  sport: 'Sport',
+  zene: 'Zene',
+  kultura: 'Kultúra',
+  segitseg: 'Segítségnyújtás',
+  kozosseg: 'Közösségépítés',
+};
+
+const formattedDate = post.data.date.toLocaleDateString('hu-HU', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <Layout
   title={`${post.data.title} — Előtted a Cél Egyesület`}
-  description={post.data.excerpt}
+  description={post.data.excerpt ?? post.data.title}
+  ogImage={post.data.heroImage}
   localeToggle={{ huUrl, roUrl: '/ro/' }}
 >
-  <article class="max-w-2xl mx-auto px-4 py-16">
-    <p class="text-xs text-ink-soft mb-2 uppercase tracking-wide">
-      {post.data.pillar}
-    </p>
-    <h1 class="font-display text-4xl text-ink mb-4">{post.data.title}</h1>
-    <p class="text-sm text-ink-soft mb-8">
+  <!-- Hero image -->
+  {post.data.heroImage && (
+    <div class="w-full">
+      <img
+        src={post.data.heroImage}
+        alt={post.data.title}
+        loading="eager"
+        class="w-full max-h-[400px] object-cover"
+      />
+    </div>
+  )}
+
+  <article class="max-w-2xl mx-auto px-4 py-10">
+
+    <!-- Pillar tag + date -->
+    <div class="flex flex-wrap items-center gap-3 mb-4 text-sm text-ink-soft">
+      <span class="uppercase tracking-wide text-xs font-medium">
+        {pillarLabels[post.data.pillar] ?? post.data.pillar}
+      </span>
+      <span aria-hidden="true">·</span>
       <time datetime={post.data.date.toISOString()}>
-        {post.data.date.toLocaleDateString('hu-HU', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}
+        {formattedDate}
       </time>
-      {post.data.photoCredit && (
-        <span class="ml-3">Fotó: {post.data.photoCredit}</span>
-      )}
-    </p>
-    <div class="prose max-w-none text-ink leading-relaxed">
+    </div>
+
+    <h1 class="font-display text-3xl sm:text-4xl text-ink mb-4 leading-snug">
+      {post.data.title}
+    </h1>
+
+    {post.data.excerpt && (
+      <p class="text-lg text-ink-soft leading-relaxed mb-8 border-l-4 pl-4" style="border-color: #E8590C;">
+        {post.data.excerpt}
+      </p>
+    )}
+
+    <!-- Photo credit (shown near top when no heroImage, otherwise shown below hero) -->
+    {!post.data.heroImage && post.data.photoCredit && (
+      <p class="text-xs italic text-ink-soft mb-6">Fotó: {post.data.photoCredit}</p>
+    )}
+    {post.data.heroImage && post.data.photoCredit && (
+      <p class="text-xs italic text-ink-soft -mt-2 mb-8">Fotó: {post.data.photoCredit}</p>
+    )}
+
+    <div class="article-body text-ink leading-relaxed">
       <Content />
     </div>
+
   </article>
 </Layout>
+
+<style is:global>
+  .article-body p {
+    margin-bottom: 1.25rem;
+  }
+  .article-body h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .article-body hr {
+    border: none;
+    border-top: 1px solid #E8E4DC;
+    margin: 2rem 0;
+  }
+  .article-body img {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .article-body a {
+    color: #E8590C;
+    text-decoration: underline;
+  }
+  .article-body ul,
+  .article-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .article-body li {
+    margin-bottom: 0.25rem;
+  }
+</style>

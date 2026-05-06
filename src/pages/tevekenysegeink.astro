@@ -1,16 +1,216 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const pillars = [
+  {
+    id: 'sport',
+    label: 'Sport',
+    color: '#F97316',
+    photo: '/img/pillar-sport.jpg',
+    anchor: 'sport',
+    description:
+      'Heti közös futások, helyi versenyek és edzések. Évente megrendezzük a Tavaszi Futóversenyt és csatlakozunk a régiós futóeseményekhez. Mindenkit várunk, kortól és edzettségtől függetlenül.',
+  },
+  {
+    id: 'zene',
+    label: 'Zene',
+    color: '#A855F7',
+    photo: '/img/pillar-zene.jpg',
+    anchor: 'zene',
+    description:
+      'Hangszertanulás gyermekeknek (gitár, ukulele), nyári gitártábor, és a közösségi életet kísérő zenei alkalmak. Évente több tucat gyermek vesz részt programjainkban.',
+  },
+  {
+    id: 'kultura',
+    label: 'Kultúra',
+    color: '#EF4444',
+    photo: '/img/pillar-kultura.jpg',
+    anchor: 'kultura',
+    description:
+      'Előadások, kerekasztal-beszélgetések és kulturális események — gyermeknevelési témáktól ultrafutó vendégekig. Az Együtt Egymásért előadássorozat minden évben januárban.',
+  },
+  {
+    id: 'segitseg',
+    label: 'Segítségnyújtás',
+    color: '#1E3A8A',
+    photo: '/img/pillar-segitseg.jpg',
+    anchor: 'segitsegnyujtas',
+    description:
+      'Meleg étel program, gyermekotthon-látogatások, és időszakos segítő akciók a helyi közösség legrászorultabbjaiért.',
+  },
+  {
+    id: 'kozosseg',
+    label: 'Közösségépítés',
+    color: '#65A30D',
+    photo: '/img/pillar-kozosseg.jpg',
+    anchor: 'kozossegepites',
+    description:
+      'Az újévköszöntő futás, a táborok és a rendszeres események mind egy célt szolgálnak: hogy a Nyárád menti közösség erősebb legyen.',
+  },
+];
 ---
 
 <Layout
   title="Tevékenységeink — Előtted a Cél Egyesület"
-  description="Az Előtted a Cél Egyesület négy pillére: Segítségnyújtás, Zene, Sport és Kultúra és közösségépítés."
+  description="Az Előtted a Cél Egyesület öt pillére: Sport, Zene, Kultúra, Segítségnyújtás és Közösségépítés."
   localeToggle={{ huUrl: '/tevekenysegeink', roUrl: '/ro/tevekenysegeink' }}
 >
-  <div class="max-w-2xl mx-auto px-4 py-16">
-    <h1 class="font-display text-4xl text-ink mb-4">Tevékenységeink</h1>
-    <p class="text-ink-soft">
-      Lorem ipsum — Tartalom hamarosan: Segítségnyújtás, Zene, Sport (részletes), Kultúra és közösségépítés.
+  <!-- Hero image -->
+  <div class="w-full">
+    <img
+      src="/img/hero-rolunk.jpg"
+      alt="Előtted a Cél Egyesület tevékenységei"
+      loading="eager"
+      class="w-full max-h-[400px] object-cover"
+    />
+  </div>
+
+  <div class="max-w-3xl mx-auto px-4 py-12">
+
+    <h1 class="font-display text-4xl sm:text-5xl text-ink mb-4">Tevékenységeink</h1>
+    <p class="text-lg text-ink leading-relaxed mb-12">
+      Öt területen építünk közösséget — a sportban, a zenében, a kultúrában, a segítségnyújtásban és a közösségépítésben.
     </p>
+
+    <!-- Pillar circles -->
+    <div
+      class="flex flex-wrap justify-center gap-x-8 gap-y-10 md:gap-x-10"
+      role="group"
+      aria-label="Tevékenységi területek"
+    >
+      {pillars.map((p) => (
+        <button
+          type="button"
+          class="pillar-btn flex flex-col items-center gap-3"
+          data-id={p.id}
+          data-color={p.color}
+          data-anchor={p.anchor}
+          data-label={p.label}
+          data-description={p.description}
+          aria-label={`${p.label} — kattints a részletekért`}
+          aria-expanded="false"
+          aria-controls="pillar-panel"
+        >
+          <div
+            class="pillar-circle w-24 h-24 md:w-[120px] md:h-[120px] rounded-full bg-center bg-cover border-4"
+            style={`border-color: ${p.color}; background-image: url('${p.photo}'); background-color: ${p.color};`}
+          ></div>
+          <span class="text-[10px] md:text-[11px] font-medium text-ink-soft uppercase tracking-wider leading-tight text-center w-24 md:w-[120px] break-words">
+            {p.label}
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Info panel -->
+    <div
+      id="pillar-panel"
+      role="region"
+      aria-live="polite"
+      aria-label="Pillér részletei"
+      class="mt-12 pt-6 border-t-4 min-h-32"
+      style="border-color: #E8E4DC;"
+    >
+      <p id="panel-prompt" class="text-center text-ink-soft py-4">
+        Kattints egy körre, hogy többet megtudj az adott területről!
+      </p>
+      <div id="panel-content" class="hidden">
+        <h2 id="panel-title" class="font-display text-2xl text-ink mb-3"></h2>
+        <p id="panel-desc" class="text-ink-soft leading-relaxed"></p>
+      </div>
+    </div>
+
   </div>
 </Layout>
+
+<style>
+  .pillar-circle {
+    transition: transform 0.22s ease-out, box-shadow 0.22s ease-out;
+  }
+  .pillar-btn {
+    transition: opacity 0.22s ease-out;
+    cursor: pointer;
+  }
+  .pillar-btn:not([data-active]):is(:hover, :focus-visible) .pillar-circle {
+    transform: scale(1.08);
+  }
+  .pillar-btn[data-active] .pillar-circle {
+    transform: scale(1.12);
+  }
+  .pillar-btn[data-faded] {
+    opacity: 0.55;
+  }
+  #pillar-panel {
+    transition: border-color 0.22s ease-out;
+  }
+</style>
+
+<script>
+  const btns = [...document.querySelectorAll<HTMLButtonElement>('.pillar-btn')];
+  const panel   = document.getElementById('pillar-panel')!;
+  const prompt  = document.getElementById('panel-prompt')!;
+  const content = document.getElementById('panel-content')!;
+  const titleEl = document.getElementById('panel-title')!;
+  const descEl  = document.getElementById('panel-desc')!;
+
+  let activeId: string | null = null;
+
+  function open(btn: HTMLButtonElement) {
+    const { id, color, label, description } = btn.dataset as Record<string, string>;
+    activeId = id;
+
+    btns.forEach(b => {
+      const isThis = b === btn;
+      b.setAttribute('aria-expanded', String(isThis));
+      b.toggleAttribute('data-active', isThis);
+      b.toggleAttribute('data-faded', !isThis);
+      const circle = b.querySelector<HTMLElement>('.pillar-circle')!;
+      circle.style.boxShadow = isThis ? `0 0 0 5px ${color}33` : '';
+    });
+
+    panel.style.borderColor = color;
+    prompt.classList.add('hidden');
+    content.classList.remove('hidden');
+    titleEl.textContent = label;
+    descEl.textContent = description;
+  }
+
+  function close() {
+    activeId = null;
+    btns.forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.removeAttribute('data-active');
+      b.removeAttribute('data-faded');
+      b.querySelector<HTMLElement>('.pillar-circle')!.style.boxShadow = '';
+    });
+    panel.style.borderColor = '#E8E4DC';
+    prompt.classList.remove('hidden');
+    content.classList.add('hidden');
+  }
+
+  btns.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      btn.dataset.id === activeId ? close() : open(btn);
+    });
+
+    btn.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        btns[(i + 1) % btns.length].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        btns[(i - 1 + btns.length) % btns.length].focus();
+      }
+    });
+  });
+
+  // Auto-open pillar when the page is loaded via a hash link (e.g. /tevekenysegeink#sport)
+  const hash = window.location.hash.slice(1);
+  if (hash) {
+    const target = btns.find(b => b.dataset.anchor === hash);
+    if (target) {
+      open(target);
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+</script>
