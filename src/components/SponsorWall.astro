@@ -1,0 +1,76 @@
+---
+import { sponsors } from '../data/sponsors';
+
+const main = sponsors.filter(s => s.tier === 'main');
+const supporters = sponsors.filter(s => s.tier === 'supporter');
+---
+
+<section class="bg-cream py-16 sm:py-20 border-t border-line">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <h2 class="font-display text-3xl text-ink text-center mb-14">Támogatóink</h2>
+
+    <!-- Főtámogatók -->
+    <div class="mb-12">
+      <p class="text-xs font-medium uppercase tracking-widest text-ink-soft text-center mb-8">Főtámogatók</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center justify-items-center">
+        {main.map(s => (
+          s.url ? (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
+            >
+              <img src={s.logo} alt={s.name} loading="lazy" class="max-h-24 w-auto object-contain" />
+            </a>
+          ) : (
+            <div class="sponsor-logo">
+              <img src={s.logo} alt={s.name} loading="lazy" class="max-h-24 w-auto object-contain" />
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+
+    <!-- Támogatók -->
+    <div>
+      <p class="text-xs font-medium uppercase tracking-widest text-ink-soft text-center mb-8">Támogatók</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 items-center justify-items-center">
+        {supporters.map(s => (
+          s.url ? (
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
+            >
+              <img src={s.logo} alt={s.name} loading="lazy" class="max-h-14 w-auto object-contain" />
+            </a>
+          ) : (
+            <div class="sponsor-logo">
+              <img src={s.logo} alt={s.name} loading="lazy" class="max-h-14 w-auto object-contain" />
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sponsor-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+  }
+  .sponsor-logo img {
+    filter: grayscale(100%) opacity(0.7);
+    transition: filter 0.25s ease, transform 0.25s ease;
+  }
+  .sponsor-logo:hover img,
+  .sponsor-logo:focus-visible img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+  }
+</style>

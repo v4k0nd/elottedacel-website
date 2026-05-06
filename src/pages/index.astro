@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import SponsorWall from '../components/SponsorWall.astro';
 
 const allNews = await getCollection('news');
 const recentNews = allNews
@@ -137,6 +138,9 @@ const stats = [
       </a>
     </div>
   </section>
+
+  <!-- ─── Sponsor wall ───────────────────────────────────────── -->
+  <SponsorWall />
 
   <!-- ─── Facebook follow card ─────────────────────────────── -->
   <section class="border-t border-line mt-16 sm:mt-24 py-16 px-4">

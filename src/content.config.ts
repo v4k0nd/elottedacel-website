@@ -26,15 +26,6 @@ const events = defineCollection({
   }),
 });
 
-const partners = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/partners' }),
-  schema: z.object({
-    name: z.string(),
-    url: z.string().url(),
-    logoPath: z.string(),
-  }),
-});
-
 const results = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/results' }),
   schema: z.object({
@@ -48,4 +39,4 @@ const results = defineCollection({
   }),
 });
 
-export const collections = { news, events, partners, results };
+export const collections = { news, events, results };
