@@ -1,0 +1,21 @@
+{
+  "name": "Előtted a Cél Egyesület",
+  "short_name": "Előtted a Cél",
+  "description": "Testet erősítünk, lelket emelünk, közösséget építünk.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#E8590C",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

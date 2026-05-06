@@ -17,7 +17,7 @@ const {
   description,
   lang = 'hu',
   localeToggle,
-  ogImage = '/img/og-default.jpg',
+  ogImage = '/img/og-default.png',
 } = Astro.props;
 
 const siteUrl = 'https://elottedacel.ro';
@@ -42,8 +42,11 @@ const ogImageAbsolute = new URL(ogImage, siteUrl);
     <meta property="og:image" content={ogImageAbsolute} />
     <meta property="og:locale" content={lang === 'hu' ? 'hu_HU' : 'ro_RO'} />
 
-    <!-- TODO: replace with real favicon SVG once logo is ready -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="min-h-screen flex flex-col">
     <!-- Skip-to-content for keyboard and screen reader users -->

@@ -36,12 +36,13 @@ const closeLabel  = lang === 'ro' ? 'Închide meniul'  : 'Menü bezárása';
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
 
-      <!-- TODO: replace text with actual SVG logo once provided -->
-      <a
-        href={homeHref}
-        class="font-display text-lg font-bold text-ink hover:text-orange-500 transition-colors"
-      >
-        Előtted a Cél
+      <a href={homeHref} class="flex items-center">
+        <img
+          src="/img/logo.png"
+          alt="Előtted a Cél Egyesület"
+          class="h-12 w-auto"
+          loading="eager"
+        />
       </a>
 
       <!-- Desktop nav (hidden on mobile) -->
